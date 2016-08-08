@@ -1,0 +1,3 @@
+rootProject.name = 'jsq'
+
+include ':app'
