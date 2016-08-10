@@ -22,5 +22,4 @@ class jsq extends Component {
 }
 
 
-
 AppRegistry.registerComponent('jsq', () => jsq);
