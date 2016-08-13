@@ -2,21 +2,14 @@ import React, { Component } from 'react';
 import { StyleSheet, ListView, Image, Text, View } from 'react-native';
 
 var img = require('../imgs/more_btn.png')
-var data = [{
-  title: '韩式5微米PP棉滤芯X1',
-  time: '2015.09.06 15:31',
-  price: ' ￥123',
-  state: '待收货',  //1待发货/2待收货/3已完成/4已取消
-}]
+
 class ReceiveListView extends Component {
   // 初始化伪数据
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
-        '1'
-      ])
+      dataSource: ds.cloneWithRows(this._getData())
     };
   }
   render() {
@@ -33,7 +26,13 @@ class ReceiveListView extends Component {
   }
 
   _getData(){
-
+    const data = [{
+    title: '韩式5微米PP棉滤芯X1',
+    time: '2015.09.06 15:31',
+    price: ' ￥123',
+    state: '待收货',  //1待发货/2待收货/3已完成/4已取消
+    }];
+    return data;
   }
   
   _renderItem (rowData,sectionID, rowID) {
