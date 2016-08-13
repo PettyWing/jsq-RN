@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-var MyListView = require('./js/MyListView');
+var MyOrder = require('./js/AllOrders');
 
 class jsq extends Component {
   constructor(props, context) {
@@ -16,7 +16,7 @@ class jsq extends Component {
   }
   render() {
     return (
-      <MyListView/>
+      <MyOrder/>
     );
   }
 }

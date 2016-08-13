@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import { StyleSheet, ListView, Image, Text, View } from 'react-native';
 
 var img = require('../imgs/more_btn.png')
-class MyListView extends Component {
+var data = [{
+  title: '韩式5微米PP棉滤芯X1',
+  time: '2015.09.06 15:31',
+  price: ' ￥123',
+  state: '待收货',  //1待发货/2待收货/3已完成/4已取消
+}]
+class ReceiveListView extends Component {
   // 初始化伪数据
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        'John', 'Joel'
+        '1'
       ])
     };
   }
@@ -30,18 +36,19 @@ class MyListView extends Component {
 
   }
   
-  _renderItem() {
+  _renderItem (rowData,sectionID, rowID) {
+    var color = data[rowID].state==='待发货' || data[rowID].state==='待收货' ? 'red' : '#8d8d8d';
     return (
       <View style={styles.itemcontainer}>
         <View style={styles.leftcontainer}>
-          <Text style={styles.black}>{'韩式5微米PP棉滤芯x1'}</Text>
-          <Text style={styles.grey}>{'2015.09.06 15:31'}</Text>
+          <Text numberOfLines={1} style={styles.black}>{data[rowID].title}</Text>
+          <Text style={styles.grey}>{data[rowID].time}</Text>
           <View style={styles.statecontainer}>
             <View flexDirection='row'>
               <Text style={styles.grey}>{'合计:'}</Text>
-              <Text style={styles.red}>{' ￥123'}</Text>
+              <Text style={styles.red}>{data[rowID].price}</Text>
             </View>
-            <Text style={styles.grey}>{'已完成'}</Text>
+            <Text style={[styles.grey,{color:color}]}>{data[rowID].state}</Text>
           </View>
         </View>
         <View style={styles.thumb}>
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
   grey: {
     paddingTop: 1,
     paddingBottom: 1,
-    color: '#8d8d8d',
+ //   color: '#8d8d8d',
     fontSize: 16,
   },
   red: {
@@ -117,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = MyListView;
+module.exports = ReceiveListView;
