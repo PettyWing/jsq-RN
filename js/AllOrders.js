@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, ListView, Image, Text, View, TouchableOpacity } from 'react-native';
-
+import ReceiveOrders from './ReceiveOrders';
+import SendOrders from './SendOrders';
 var img = require('../imgs/more_btn.png')
 
 class OrderListView extends Component {
@@ -27,26 +28,6 @@ class OrderListView extends Component {
 
   _getData(){
     const data = [{
-    title: '韩式5微米PP棉滤芯X1',
-    time: '2015.09.06 15:31',
-    price: ' ￥123',
-    state: '待收货',  //1待发货/2待收货/3已完成/4已取消
-    },{
-      title: '韩式1微米PP棉滤芯X2 50G抗污染反渗透XXXXXX',
-      time: '2015.09.06 15:32',
-      price: ' ￥482',
-      state: '已完成',
-    },{
-      title: '韩式3微米PP棉滤芯X1',
-      time: '2015.09.06 15:32',
-      price: ' ￥386',
-      state: '待发货',
-    },{
-      title: '韩式6微米PP棉滤芯X2',
-      time: '2015.09.06 15:32',
-      price: ' ￥634',
-      state: '已取消',
-    },{
     title: '韩式5微米PP棉滤芯X1',
     time: '2015.09.06 15:31',
     price: ' ￥123',
@@ -95,7 +76,21 @@ class OrderListView extends Component {
   }
 
   _pressRow(rowID){
-    alert("hellow"+rowID);
+    const { navigator } = this.props;
+    if(navigator) {
+      if(rowID == 0){
+        navigator.push({
+        name: 'ReceiveOrdersComponent',
+        component: ReceiveOrders
+        })
+      }
+      else if (rowID == 2){
+        navigator.push({
+        name: 'SendOrdersComponent',
+        component: SendOrders
+        })
+      }
+    }
   }
 
   _renderSeparator() {

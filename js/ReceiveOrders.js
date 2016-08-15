@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ListView, Image, Text, View } from 'react-native';
+import { StyleSheet, ListView, Image, Text, View, TouchableOpacity } from 'react-native';
 
 var img = require('../imgs/more_btn.png')
 
@@ -17,7 +17,7 @@ class ReceiveListView extends Component {
       <View style={ styles.container}>
         <ListView
           dataSource={ this.state.dataSource}
-          renderRow={this._renderItem}
+          renderRow={this._renderItem.bind(this)}
           renderSeparator={this._renderSeparator}
           style={ styles.listview}
         />
@@ -36,24 +36,26 @@ class ReceiveListView extends Component {
   }
   
   _renderItem (rowData,sectionID, rowID) {
-    var color = data[rowID].state==='待发货' || data[rowID].state==='待收货' ? 'red' : '#8d8d8d';
+    var color = rowData.state==='待发货' || rowData.state==='待收货' ? 'red' : '#8d8d8d';
     return (
-      <View style={styles.itemcontainer}>
-        <View style={styles.leftcontainer}>
-          <Text numberOfLines={1} style={styles.black}>{data[rowID].title}</Text>
-          <Text style={styles.grey}>{data[rowID].time}</Text>
-          <View style={styles.statecontainer}>
-            <View flexDirection='row'>
-              <Text style={styles.grey}>{'合计:'}</Text>
-              <Text style={styles.red}>{data[rowID].price}</Text>
+      <TouchableOpacity onPress={() => this._pressRow(rowID)}>
+        <View style={styles.itemcontainer}>
+          <View style={styles.leftcontainer}>
+            <Text numberOfLines={1} style={styles.black}>{rowData.title}</Text>
+            <Text style={styles.grey}>{rowData.time}</Text>
+            <View style={styles.statecontainer}>
+              <View flexDirection='row'>
+                <Text style={styles.grey}>{'合计:'}</Text>
+                <Text style={styles.red}>{rowData.price}</Text>
+              </View>
+              <Text style={[styles.grey,{color:color}]}>{rowData.state}</Text>
             </View>
-            <Text style={[styles.grey,{color:color}]}>{data[rowID].state}</Text>
+          </View>
+          <View style={styles.thumb}>
+            <Image source={img} style={styles.img}/>
           </View>
         </View>
-        <View style={styles.thumb}>
-          <Image source={img} style={styles.img}/>
-        </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 
@@ -66,6 +68,13 @@ class ReceiveListView extends Component {
         }}
       />
     );
+  }
+
+  _pressRow(rowID){
+    const { navigator } = this.props;
+    if(navigator) {
+      navigator.pop();
+    }
   }
 
 }

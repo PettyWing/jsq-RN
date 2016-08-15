@@ -6,17 +6,30 @@
 'use strict';
 import React, { Component } from 'react';
 import {
+  Navigator,
   AppRegistry,
 } from 'react-native';
-var MyOrder = require('./js/AllOrders');
-
+//var MyOrder = require('./js/AllOrders');
+import AllOrders from "./js/AllOrders"
 class jsq extends Component {
   constructor(props, context) {
     super(props, context);
   }
   render() {
+    var defaultName = 'AllOrdersComponent';
+    var defaultComponent = AllOrders;
     return (
-      <MyOrder/>
+      <Navigator
+        initialRoute = {{ name: defaultName, component: defaultComponent }}
+        configureScene = {(route) => {
+          return Navigator.SceneConfigs.FadeAndroid;
+        }}
+        renderScene = {(route, navigator) => {
+          let Component = route.component;
+          if(route.component){
+            return <Component navigator = {navigator} />
+          }
+        }} />
     );
   }
 }
