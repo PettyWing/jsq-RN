@@ -9,8 +9,8 @@ import {
   Navigator,
   AppRegistry,
 } from 'react-native';
-//var MyOrder = require('./js/AllOrders');
-import AllOrders from "./js/AllOrders"
+import AllOrders from "./js/AllOrders";
+import Header from "./js/Header"
 class jsq extends Component {
   constructor(props, context) {
     super(props, context);
