@@ -9,15 +9,15 @@ import {
   Navigator,
   AppRegistry,
 } from 'react-native';
-import AllOrders from "./js/AllOrders";
-import Header from "./js/Header"
+import Header from "./js/Header";
+
 class jsq extends Component {
   constructor(props, context) {
     super(props, context);
   }
   render() {
-    var defaultName = 'AllOrdersComponent';
-    var defaultComponent = AllOrders;
+    var defaultName = 'HeaderComponent';
+    var defaultComponent = Header;
     return (
       <Navigator
         initialRoute = {{ name: defaultName, component: defaultComponent }}

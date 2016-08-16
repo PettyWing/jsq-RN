@@ -17,6 +17,7 @@ import ReceiveOrders from "./ReceiveOrders"
 
 export default class Header extends Component {
   // 初始化伪数据
+
   constructor(props) {
     super(props);
      this.buttonBackAction = this.buttonBackAction.bind(this);
@@ -37,7 +38,7 @@ export default class Header extends Component {
                     <TouchableOpacity onPress={() => { this.buttonBackAction() } } style={{ marginLeft: 10, justifyContent: 'center' }}>
                         <Image
                             style={{ width: 20, height: 20 }}
-                            source={require('../ic_menu_back.png') }
+                            source={require('./ic_menu_back.png') }
                             />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -54,9 +55,9 @@ export default class Header extends Component {
                     tabBarTextStyle={{ fontSize: 14 , }}
                     renderTabBar={() => <DefaultTabBar />}
                     >
-                    <AllOrders tabLabel='全部订单'>全部订单</AllOrders>
-                    <Text tabLabel='待发货'>待发货</Text>
-                    <Text tabLabel='待收货'>待收货</Text>
+                    <AllOrders tabLabel='全部订单' {...this.props}></AllOrders>
+                    <SendOrders tabLabel='待发货订单' {...this.props}></SendOrders>
+                    <ReceiveOrders tabLabel='待接收订单'{...this.props}></ReceiveOrders>
                 </ScrollableTabView>
             </View>
 

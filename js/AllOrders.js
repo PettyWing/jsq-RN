@@ -25,7 +25,6 @@ class OrderListView extends Component {
       </View>
     );
   }
-
   _getData(){
     const data = [{
     title: '韩式5微米PP棉滤芯X1',
@@ -52,7 +51,7 @@ class OrderListView extends Component {
   }
   
   _renderItem (rowData, sectionID, rowID) {
-    var color = rowData.state==='待发货' || rowData.state==='待收货' ? 'red' : '#8d8d8d';
+    var color = rowData.state=='待发货' || rowData.state=='待收货' ? 'red' : '#8d8d8d';
     return (
       <TouchableOpacity onPress={() => this._pressRow(rowID)}>
         <View style={styles.itemcontainer}>
@@ -91,6 +90,10 @@ class OrderListView extends Component {
         })
       }
     }
+    else{
+      alert('hello');
+    }
+    
   }
 
   _renderSeparator() {
